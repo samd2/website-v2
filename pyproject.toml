@@ -14,8 +14,8 @@ indent = 2
 preserve_blank_lines = true
 ignore = "D018,H005,H006,H008,H013,H014,H016,H020,H021,H022,H023,H025,H026,H029,H030,H031,H037,T002,T003,T027,T032"
 
-# Exclude the HTML file that is in fact a markdown file and is not meant to be rendered as HTML. This file is only used for testing the markdown rendering of the content management system, and should not be included in the HTML linting process.
-exclude = "core/tests/content/foo.html"
+# Exclude the HTML file that contains the test content, as it is not relevant for linting and may contain code that does not conform to the linting rules.
+exclude = "core/tests/content/"
 
 [tool.black]
 line-length = 88
