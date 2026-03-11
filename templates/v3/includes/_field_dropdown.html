@@ -14,7 +14,28 @@
     {% include "v3/includes/_field_dropdown.html" with name="country" label="Country" options=country_options placeholder="Select a country" %}
 {% endcomment %}
 <div class="field{% if error %} field--error{% endif %}{% if extra_class %} {{ extra_class }}{% endif %}"
-     x-data="{ open: false, selected: '{{ selected|default:'' }}', selectedLabel: '', init() { if (this.selected) { const opts = this.$refs.list.querySelectorAll('[data-value]'); opts.forEach(el => { if (el.dataset.value === this.selected) this.selectedLabel = el.dataset.label; }); } }, choose(value, label) { this.selected = value; this.selectedLabel = label; this.open = false; this.$refs.trigger.focus(); } }">
+  {# djlint:off #}
+     x-data="{
+         open: false,
+         selected: '{{ selected|default:'' }}',
+         selectedLabel: '',
+         init() {
+             if (this.selected) {
+                 const opts = this.$refs.list.querySelectorAll('[data-value]');
+                 opts.forEach(el => {
+                     if (el.dataset.value === this.selected) this.selectedLabel = el.dataset.label;
+                 });
+             }
+         },
+         choose(value, label) {
+             this.selected = value;
+             this.selectedLabel = label;
+             this.open = false;
+             this.$refs.trigger.focus();
+         }
+     }"
+  {# djlint:on #}
+  >
   {% if label %}<label class="field__label" id="field-{{ name }}-label">{{ label }}</label>{% endif %}
   <div class="dropdown" :class="{ 'dropdown--open': open }">
     <button type="button"

@@ -17,7 +17,37 @@
   <script type="application/json" id="field-{{ name }}-selected">{{ selected_json|safe }}</script>
 {% endif %}
 <div class="field{% if error %} field--error{% endif %}{% if extra_class %} {{ extra_class }}{% endif %}"
-     x-data="{ open: false, selectedValues: [], options: [], init() { this.options = JSON.parse(document.getElementById('field-{{ name }}-options').textContent); const selEl = document.getElementById('field-{{ name }}-selected'); if (selEl) this.selectedValues = JSON.parse(selEl.textContent); }, toggle(value) { const idx = this.selectedValues.indexOf(value); if (idx === -1) { this.selectedValues.push(value); } else { this.selectedValues.splice(idx, 1); } }, isSelected(value) { return this.selectedValues.includes(value); }, get displayText() { if (this.selectedValues.length === 0) return ''; return this.options .filter(o => this.selectedValues.includes(o.value)) .map(o => o.label) .join(', '); } }">
+  {# djlint:off #}
+     x-data="{
+         open: false,
+         selectedValues: [],
+         options: [],
+         init() {
+             this.options = JSON.parse(document.getElementById('field-{{ name }}-options').textContent);
+             const selEl = document.getElementById('field-{{ name }}-selected');
+             if (selEl) this.selectedValues = JSON.parse(selEl.textContent);
+         },
+         toggle(value) {
+             const idx = this.selectedValues.indexOf(value);
+             if (idx === -1) {
+                 this.selectedValues.push(value);
+             } else {
+                 this.selectedValues.splice(idx, 1);
+             }
+         },
+         isSelected(value) {
+             return this.selectedValues.includes(value);
+         },
+         get displayText() {
+             if (this.selectedValues.length === 0) return '';
+             return this.options
+                 .filter(o => this.selectedValues.includes(o.value))
+                 .map(o => o.label)
+                 .join(', ');
+         }
+     }"
+  {# djlint:on #}
+  >
   {% if label %}<label class="field__label" id="field-{{ name }}-label">{{ label }}</label>{% endif %}
   <div class="dropdown" :class="{ 'dropdown--open': open }">
     <button type="button"
