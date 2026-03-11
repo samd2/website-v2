@@ -1,0 +1,4 @@
+# Avoid blaming the commit author for the massive lint/reformat
+# (Add the full 40-character SHA-1 hash)
+
+75167cb31fbb609ff7f1e2946a32c97a014462d7
