@@ -6,8 +6,8 @@ on:
     branches: develop
 
 env:
-  DOCKER_BUILDKIT: "1"
-  DOCKER_IMAGE: "registry.revsys.com/boost"
+  DOCKER_BUILDKIT: '1'
+  DOCKER_IMAGE: 'registry.revsys.com/boost'
 
 jobs:
   test:
@@ -20,7 +20,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: postgres
-        ports: ["5432:5432"]
+        ports: ['5432:5432']
         # options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
       redis:
@@ -57,14 +57,25 @@ jobs:
 
       - name: Test with pytest
         env:
-          DATABASE_URL: "postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/postgres"
-          HYPERKITTY_DATABASE_URL: "postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/lists_production_web"
-          SECRET_KEY: "for-testing-only"
-          REDIS_HOST: "localhost"
-          CI: "true"
+          DATABASE_URL: 'postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/postgres'
+          HYPERKITTY_DATABASE_URL: 'postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/lists_production_web'
+          SECRET_KEY: 'for-testing-only'
+          REDIS_HOST: 'localhost'
+          CI: 'true'
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
           python -m pytest
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Node dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Check formatting with Prettier, Djlint, and Black
+        run: yarn format:check
 
       - name: Lints with pre-commit
         run: |
