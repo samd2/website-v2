@@ -1,6 +1,4 @@
-
 (function () {
-
   const CAROUSEL_STEP_PX_FALLBACK = 320;
   const SCROLL_RESET_EPSILON = 2;
   const DEFAULT_AUTOPLAY_MS = 4000;
@@ -24,9 +22,10 @@
     const step = getStepPx(track);
     const maxScroll = track.scrollWidth - track.clientWidth;
     const current = track.scrollLeft;
-    const next = direction === 'next'
-      ? Math.min(current + step, maxScroll)
-      : Math.max(current - step, 0);
+    const next =
+      direction === 'next'
+        ? Math.min(current + step, maxScroll)
+        : Math.max(current - step, 0);
     track.scrollTo({ left: next, behavior: smooth ? 'smooth' : 'auto' });
   }
 
@@ -111,16 +110,20 @@
 
     const autoplayDelay = root.getAttribute('data-carousel-autoplay');
     if (autoplayDelay) {
-      setupAutoplay(root, () => {
-        if (track.scrollLeft >= setWidth - SCROLL_RESET_EPSILON) {
-          scrollResetInProgress = true;
-          track.scrollLeft = track.scrollLeft - setWidth;
-          requestAnimationFrame(function () {
-            scrollResetInProgress = false;
-          });
-        }
-        scrollCarousel(track, 'next', true);
-      }, parseInt(autoplayDelay, 10));
+      setupAutoplay(
+        root,
+        () => {
+          if (track.scrollLeft >= setWidth - SCROLL_RESET_EPSILON) {
+            scrollResetInProgress = true;
+            track.scrollLeft = track.scrollLeft - setWidth;
+            requestAnimationFrame(function () {
+              scrollResetInProgress = false;
+            });
+          }
+          scrollCarousel(track, 'next', true);
+        },
+        parseInt(autoplayDelay, 10)
+      );
     }
   }
 
@@ -128,8 +131,8 @@
     if (!root || !root.id) return;
     const track = root.querySelector('[data-carousel-track]');
     const controls = document.getElementById(root.id + '-controls');
-    console.log(track)
-    console.log(controls)
+    console.log(track);
+    console.log(controls);
     if (!track || !controls) return;
 
     if (root.hasAttribute('data-carousel-infinite')) {
@@ -140,22 +143,30 @@
     const prevBtn = controls.querySelector('[data-carousel-prev]');
     const nextBtn = controls.querySelector('[data-carousel-next]');
     if (prevBtn) {
-      prevBtn.addEventListener('click', function () { scrollCarousel(track, 'prev', true); });
+      prevBtn.addEventListener('click', function () {
+        scrollCarousel(track, 'prev', true);
+      });
     }
     if (nextBtn) {
-      nextBtn.addEventListener('click', function () { scrollCarousel(track, 'next', true); });
+      nextBtn.addEventListener('click', function () {
+        scrollCarousel(track, 'next', true);
+      });
     }
 
     const autoplayDelay = root.getAttribute('data-carousel-autoplay');
     if (autoplayDelay) {
-      setupAutoplay(root,  () => {
-        const maxScroll = track.scrollWidth - track.clientWidth;
-        if (track.scrollLeft >= maxScroll - 1) {
-          track.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          scrollCarousel(track, 'next', true);
-        }
-      }, parseInt(autoplayDelay, 10));
+      setupAutoplay(
+        root,
+        () => {
+          const maxScroll = track.scrollWidth - track.clientWidth;
+          if (track.scrollLeft >= maxScroll - 1) {
+            track.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            scrollCarousel(track, 'next', true);
+          }
+        },
+        parseInt(autoplayDelay, 10)
+      );
     }
   }
 

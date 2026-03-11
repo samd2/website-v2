@@ -96,8 +96,6 @@
   min-height: 160px;
 }
 
-
-
 .stats--in-numbers .stats__bar-wrap {
   flex: 1 1 0;
   min-width: max(8px, 100cqh * 0.04);

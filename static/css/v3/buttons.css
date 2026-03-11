@@ -29,7 +29,10 @@
   width: 128px;
   padding: 8px 16px;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .btn-row {
@@ -39,13 +42,13 @@
   align-items: stretch;
 }
 
-.btn-row>.btn-error {
+.btn-row > .btn-error {
   flex: 0 0 128px;
   width: 128px;
   min-width: 128px;
 }
 
-.btn-row>.btn-flex {
+.btn-row > .btn-flex {
   flex: 1 0 0;
   display: flex;
   min-width: 128px;
@@ -58,8 +61,8 @@
 }
 
 .btn-primary:hover {
-  background-color: var(--color-secondary-dark-blue, #00778B);
-  border-color: var(--color-secondary-dark-blue, #00778B);
+  background-color: var(--color-secondary-dark-blue, #00778b);
+  border-color: var(--color-secondary-dark-blue, #00778b);
   color: var(--color-text-reversed, #fff);
 }
 
@@ -68,22 +71,22 @@
   color: var(--color-text-primary, #050816);
 }
 
-.btn-secondary:hover  {
+.btn-secondary:hover {
   background-color: var(--color-button-secondary, #fff);
-  border-color: var(--color-secondary-dark-blue, #0077B8);
-  color: var(--color-secondary-dark-blue, #0077B8);
+  border-color: var(--color-secondary-dark-blue, #0077b8);
+  color: var(--color-secondary-dark-blue, #0077b8);
 }
 
 .btn-primary-outline {
   background-color: var(--color-button-secondary, #fff);
-  border-color: var(--color-stroke-link-accent, #0077B8);
-  color: var(--color-text-link-accent, #0077B8);
+  border-color: var(--color-stroke-link-accent, #0077b8);
+  color: var(--color-text-link-accent, #0077b8);
 }
 
 .btn-primary-outline:hover {
   background-color: var(--color-secondary-light-blue, #f7fdfe);
-  border-color: var(--color-text-link-accent, #00778B);
-  color: var(--color-text-link-accent, #00778B);
+  border-color: var(--color-text-link-accent, #00778b);
+  color: var(--color-text-link-accent, #00778b);
 }
 
 .btn-secondary-grey {
@@ -99,37 +102,37 @@
 }
 
 .btn-green {
-  background-color: var(--color-surface-strong-accent-green-default, #CACA62);
+  background-color: var(--color-surface-strong-accent-green-default, #caca62);
   border-color: transparent;
   color: var(--color-text-primary, #050816);
 }
 
 .btn-green:hover {
-  background-color: var(--color-surface-strong-accent-green-hover, #CACA62BF);
+  background-color: var(--color-surface-strong-accent-green-hover, #caca62bf);
   border-color: transparent;
   color: var(--color-text-primary, #050816);
 }
 
 .btn-yellow {
-  background-color: var(--color-surface-strong-accent-yellow-default, #F5D039);
+  background-color: var(--color-surface-strong-accent-yellow-default, #f5d039);
   border-color: transparent;
   color: var(--color-text-primary, #050816);
 }
 
 .btn-yellow:hover {
-  background-color: var(--color-surface-strong-accent-yellow-hover, #F5D039BF);
+  background-color: var(--color-surface-strong-accent-yellow-hover, #f5d039bf);
   border-color: transparent;
   color: var(--color-text-primary, #050816);
 }
 
 .btn-teal {
-  background-color: var(--color-surface-strong-accent-teal-default, #64DACE);
+  background-color: var(--color-surface-strong-accent-teal-default, #64dace);
   border-color: transparent;
   color: var(--color-text-primary, #050816);
 }
 
 .btn-teal:hover {
-  background-color: var(--color-surface-strong-accent-teal-hover, #64DACEBF);
+  background-color: var(--color-surface-strong-accent-teal-hover, #64dacebf);
   border-color: transparent;
   color: var(--color-text-primary, #050816);
 }
@@ -179,7 +182,7 @@
   font-family: var(--font-sans);
   font-size: var(--font-size-small, 14px);
   font-weight: var(--font-weight-medium, 500);
-  color: var(--color-text-link-accent, #00778B);
+  color: var(--color-text-link-accent, #00778b);
   background: none;
   border: none;
   padding: 0;
@@ -211,14 +214,14 @@
 }
 
 .btn-list-link:hover {
-  color: var(--color-text-link-accent, #00778B);
+  color: var(--color-text-link-accent, #00778b);
 }
 
 .btn-list-link .btn-icon {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  color: var(--color-icon-link-accent, #00778B);
+  color: var(--color-icon-link-accent, #00778b);
 }
 
 .btn-icon-library {

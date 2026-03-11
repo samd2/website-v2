@@ -7,7 +7,9 @@
 
   function convertAndInsertMarkdown(evt, editorEl) {
     try {
-      const md = evt.clipboardData.getData("text/markdown") || evt.clipboardData.getData("text/plain");
+      const md =
+        evt.clipboardData.getData('text/markdown') ||
+        evt.clipboardData.getData('text/plain');
       if (!md || !isMarkdown(md)) return false;
 
       // Convert markdown -> HTML
@@ -22,7 +24,7 @@
       if (!sel || sel.rangeCount === 0) return false;
 
       // Some Draftail builds support 'insertHTML' directly via execCommand:
-      document.execCommand("insertHTML", false, html);
+      document.execCommand('insertHTML', false, html);
       return true;
     } catch (_) {
       return false;
@@ -31,15 +33,20 @@
 
   function attach() {
     // Draftail editor root elements have [data-draftail-input]
-    document.querySelectorAll("[data-draftail-input]").forEach((wrapper) => {
+    document.querySelectorAll('[data-draftail-input]').forEach((wrapper) => {
       const editorEl = wrapper.querySelector("[contenteditable='true']");
       if (!editorEl || editorEl.__md_paste_bound) return;
       editorEl.__md_paste_bound = true;
 
-      editorEl.addEventListener("paste", (evt) => {
+      editorEl.addEventListener('paste', (evt) => {
         // Prefer text/markdown if provided by the clipboard
-        const hasMarkdownMime = evt.clipboardData && Array.from(evt.clipboardData.types || []).includes("text/markdown");
-        if (hasMarkdownMime || isMarkdown(evt.clipboardData.getData("text/plain") || "")) {
+        const hasMarkdownMime =
+          evt.clipboardData &&
+          Array.from(evt.clipboardData.types || []).includes('text/markdown');
+        if (
+          hasMarkdownMime ||
+          isMarkdown(evt.clipboardData.getData('text/plain') || '')
+        ) {
           convertAndInsertMarkdown(evt, editorEl);
         }
       });
@@ -47,6 +54,6 @@
   }
 
   // Attach when the editor loads and also after Wagtail re-initializes editors
-  document.addEventListener("DOMContentLoaded", attach);
-  document.addEventListener("wagtail:document-loaded", attach);
+  document.addEventListener('DOMContentLoaded', attach);
+  document.addEventListener('wagtail:document-loaded', attach);
 })();

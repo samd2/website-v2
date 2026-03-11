@@ -104,7 +104,7 @@ a:hover .content-card {
 
 html.dark .event-cards--teal,
 html.dark .event-cards--yellow,
-html.dark .event-cards--beige{
+html.dark .event-cards--beige {
   background: var(--color-primary-grey-850);
   border: 1px solid var(--color-primary-grey-850);
 }
